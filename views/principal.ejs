@@ -1,0 +1,38 @@
+<%- include('partials/header') %>
+
+<section>
+  <h2 class="text-2xl font-bold mb-4">Meus Livros</h2>
+
+  <table class="w-full bg-white rounded shadow">
+    <thead class="bg-gray-200">
+      <tr>
+        <th class="p-2 text-left">Título</th>
+        <th class="p-2 text-left">Autor</th>
+        <th class="p-2 text-left">Páginas</th>
+        <th class="p-2 text-left">Status</th>
+        <th class="p-2 text-left">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% livros.forEach((livro, index) => { %>
+        <tr class="border-t">
+          <td class="p-2"><%= livro.titulo %></td>
+          <td class="p-2"><%= livro.autor %></td>
+          <td class="p-2"><%= livro.paginas %></td>
+          <td class="p-2"><%= livro.status %></td>
+          <td class="p-2 flex gap-2">
+            <a href="/livros/status/<%= index %>" class="bg-green-600 text-white px-3 py-1 rounded">
+              <%= livro.status === "Lendo" ? "Marcar como Lido" : "Marcar como Lendo" %>
+            </a>
+            <a href="/livros/remover/<%= index %>" class="bg-red-600 text-white px-3 py-1 rounded"
+               onclick="return confirm('Deseja excluir este livro da sua estante?')">
+              Remover
+            </a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+
+<%- include('partials/footer') %>
